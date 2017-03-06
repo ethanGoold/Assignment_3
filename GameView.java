@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
+import java.lang.Math;
 
 
 /**
@@ -27,6 +28,9 @@ public class GameView extends JFrame
     //options variables
     private JLabel steps;
     private JButton reset, quit;
+    //passed variables
+    private GameModel model;
+    private GameController controller;
 
     /**
      * Constructor used for initializing the Frame
@@ -41,72 +45,99 @@ public class GameView extends JFrame
     {
         //tmp board size
         int x = 3;
+        int iconSize;
+        if (x <= 25)
+        {
+            iconSize = 1;
+        }
+        else
+        {
+            iconSize = 2;
+        }
+        int width = Math.max((3-iconSize)*10*x, 180);
+        int height = (3-iconSize)*10;
+
+        //passed variablels
+        this.model = model;
+        controller = gameController;
 
         //window panels
         setLayout(new GridLayout(3, 1));
         board = new JPanel(new GridLayout(x, x));
-        add(board);
+        add(board); // BorderLayout.NORTH;
+        board.setSize(width, height*x*10);
 
         gamePad = new JPanel(new GridLayout(1, 6));
-        add(gamePad);
+        add(gamePad); // BorderLayout.CENTER);
+        gamePad.setSize(width, 5);
 
         options = new JPanel(new GridLayout(1, 3));
-        add(options);
+        add(options); // BorderLayout.SOUTH);
+        options.setSize(width, 5);
 
         //board variables
         dots = new DotButton[x*x];
-        int iconSize; //to determine later
-        Random gen = new Random generator;
-
+        Random generator = new Random();
+        //colors: grey-0, yellow-1, blue-2, green-3, purple-4, red-5
         for (int i = 0; i< dots.length; i++)
         {
             //initialize dot
             dots[i] = new DotButton(i/x, i%x, generator.nextInt(6), iconSize);
+            dots[i].setSize((3-iconSize)*10, (3-iconSize)*10);
             board.add(dots[i]);
         }
 
 
-        //gamePad variables -- FIX PARAMETERS: color, iconSize, controller
-        grey = new DotButton(color, iconSize);
-        grey.addActionListener(controller)
+        //gamePad variables -- FIX PARAMETERS: iconSize
+        //colors: grey-0, yellow-1, blue-2, green-3, purple-4, red-5
+        iconSize = 0;
+
+        grey = new DotButton(0, iconSize);
+        grey.setSize(30, 30);
+        //grey.addActionListener(controller)
         gamePad.add(grey);
 
-        yellow = new DotButton(color, iconSize);
-        yellow.addActionListener(controller);
+        yellow = new DotButton(1, iconSize);
+        yellow.setSize(30, 30);
+        //yellow.addActionListener(controller);
         gamePad.add(yellow);
 
-        blue = new DotButton(color, iconSize);
-        blue.addActionListener(controller);
+        blue = new DotButton(2, iconSize);
+        blue.setSize(30, 30);
+        //blue.addActionListener(controller);
         gamePad.add(blue);
 
-        green = new DotButton(color, iconSize);
-        green.addActionListener(controller);
+        green = new DotButton(3, iconSize);
+        green.setSize(30, 30);
+        //green.addActionListener(controller);
         gamePad.add(green);
 
-        purple = new DotButton(color, iconSize);
-        purple.addActionListener(controller);
+        purple = new DotButton(4, iconSize);
+        purple.setSize(30, 30);
+        //purple.addActionListener(controller);
         gamePad.add(purple);
 
-        red = new DotButton(color, iconSize);
-        red.addActionListener(controller);
+        red = new DotButton(5, iconSize);
+        red.setSize(30, 30);
+        //red.addActionListener(controller);
         gamePad.add(red);
 
 
-        //options variables -- FIX PARAMETERS: controller
+        //options variables
         steps = new JLabel();
         options.add(steps);
 
         reset = new JButton("Reset");
-        reset.addActionListener(controller);
+        //reset.addActionListener(controller);
         options.add(reset);
 
         quit = new JButton("Quit");
-        quit.addActionListener(controller);
+        //quit.addActionListener(controller);
         options.add(quit);
 
         //setup and closing settings
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 100);
+        setSize(width, height*x + 60);
         setVisible(true);
     }
 
@@ -116,8 +147,14 @@ public class GameView extends JFrame
 
     public void update()
     {
+        //board variables
 
-// ADD YOUR CODE HERE
+        //gamePad variables
+        //  no variables to update
+
+        //options variables
+        //steps.setText("Number of Steps: " + model.getSteps());
+        //options variables updated
 
     }
 
