@@ -1,4 +1,6 @@
-// ADD YOUR IMPORTS HERE
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * In the application <b>FloodIt</b>, a <b>DotButton</b> is a specialized color of
@@ -23,11 +25,8 @@
 
 public class DotButton extends JButton 
 {
-
-
-// ADD YOUR INSTANCE VARIABLES HERE
+    //instance variables
     private int row, column, color, iconSize;
-
 
     /**
      * Constructor used for initializing a cell of a specified color.
@@ -46,7 +45,7 @@ public class DotButton extends JButton
     {
         this.row = row;
         this.column = column;
-        this.color = color;
+        this.setColor(color);
         this.iconSize = iconSize;
     }
 
@@ -67,8 +66,6 @@ public class DotButton extends JButton
         this.iconSize = iconSize;
     }
  
-
-
     /**
      * Changes the cell color of this cell. The image is updated accordingly.
      * 
@@ -77,8 +74,10 @@ public class DotButton extends JButton
      */
     public void setColor(int color) 
     {
+        String[] size = {"N", "M", "S"};
+        //colors: grey-0, yellow-1, blue-2, green-3, purple-4, red-5
         this.color = color;
-        //get icon
+        this.setIcon(new ImageIcon(getClass().getResource("\\data\\" + size[iconSize] + "\\ball-" + color + ".png")));
     }
 
     /**
