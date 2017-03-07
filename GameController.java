@@ -27,8 +27,8 @@ public class GameController implements ActionListener
     public GameController(int size) 
     {
 
-        model = new GameModel(size);
-        game = new GameView(model, this);
+        //model = new GameModel(size);
+        //game = new GameView(model, this);
 
     }
 
