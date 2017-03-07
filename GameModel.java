@@ -14,13 +14,15 @@ public class GameModel {
     private int size;
     private int steps = 0; 
     private int currentSelectedColor; 
+    private Stacks<DotInfo> captured;
 
     public GameModel (int size){
+        captured = new Stacks<DotInfo>(size);
     	Random generator = new Random();
     	this.size = size;
     	model = new DotInfo[size*size];
     	for (int i = 0; i< model.length; i++){
-    		model[i] = new DotInfo(i/size, i%size. generator.nextInt(6));
+    		model[i] = new DotInfo(i/size, i%size, generator.nextInt(6));
 
     	}
 
@@ -28,8 +30,9 @@ public class GameModel {
 
     public void reset(){
     	model = new DotInfo[size*size];
+        Random generator = new Random();
     	for (int i = 0; i< model.length; i++){
-    		model[i] = new DotInfo(i/size, i%size. generator.nextInt(6));
+    		model[i] = new DotInfo(i/size, i%size, generator.nextInt(6));
     	}
     	steps = 0;
     }
@@ -50,7 +53,7 @@ public class GameModel {
     }
 
     public void capture(int i, int j){
-    	model[(size*i) + j].setCaptured();
+    	model[(size*i) + j].setCaptured(true);
 
 
     }
@@ -85,10 +88,8 @@ public class GameModel {
     }
 
     public boolean isFinished(){
-    	private boolean result = true;
-    	for (int i = 0; i<model.length; i++){
-    		if ()
-    	}
+    	boolean result = true;
+    	return captured.isFull();
 
 
     }
@@ -96,9 +97,10 @@ public class GameModel {
     public String toString(){
     	StringBuilder string = new StringBuilder();
     	for (int i = 0; i<model.length; i++){
-    		string.append("The dot at row" + i/size + "and column" + i%size + "is color " + method[i].getColor());
-    	return string.toString();
+    		string.append("The dot at row " + i/size + " and column "
+             + i%size + " is color " + model[i].getColor());
     	}
+        return string.toString();
 
     }
 }

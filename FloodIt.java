@@ -43,7 +43,7 @@ public class FloodIt
 
     	//Opening game
     	GameController controller = new GameController(size);
-    	//
+    	//GameView game = new GameView(new GameModel(), new GameController(size));
 
     }
 
