@@ -1,7 +1,0 @@
-idea behind the code 
-
-nameofButton.setIcon(new ImageIcon(getClass().getResource("/data/____the rest of the location___.png")));
-
-her example of it's use 
-
-board[j][i].setIcon(new ImageIcon(getClass().getResource("/data/"+size+"/ball-"+ board[j][i].getColor() + ".png")));
