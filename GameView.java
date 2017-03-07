@@ -63,7 +63,7 @@ public class GameView extends JFrame
         controller = gameController;
 
         //window panels
-        setLayout(new GridLayout(3, 1));
+        setLayout(new FlowLayout());
         board = new JPanel(new GridLayout(x, x));
         add(board); // BorderLayout.NORTH;
         board.setSize(width, height*x*10);
@@ -78,11 +78,12 @@ public class GameView extends JFrame
 
         //board variables
         dots = new DotButton[x*x];
+        Random gen = new Random();
         //colors: grey-0, yellow-1, blue-2, green-3, purple-4, red-5
         for (int i = 0; i< dots.length; i++)
         {
             //initialize dot
-            dots[i] = new DotButton(i/x, i%x, model.get(i/x, i%x).getColor(), iconSize);
+            dots[i] = new DotButton(i/x, i%x, gen.nextInt(6), iconSize);
             dots[i].setSize((3-iconSize)*10, (3-iconSize)*10);
             board.add(dots[i]);
         }
@@ -94,32 +95,32 @@ public class GameView extends JFrame
 
         grey = new DotButton(0, iconSize);
         grey.setSize(30, 30);
-        grey.addActionListener(controller)
+        //grey.addActionListener(controller)
         gamePad.add(grey);
 
         yellow = new DotButton(1, iconSize);
         yellow.setSize(30, 30);
-        yellow.addActionListener(controller);
+        //yellow.addActionListener(controller);
         gamePad.add(yellow);
 
         blue = new DotButton(2, iconSize);
         blue.setSize(30, 30);
-        blue.addActionListener(controller);
+        //blue.addActionListener(controller);
         gamePad.add(blue);
 
         green = new DotButton(3, iconSize);
         green.setSize(30, 30);
-        green.addActionListener(controller);
+        //green.addActionListener(controller);
         gamePad.add(green);
 
         purple = new DotButton(4, iconSize);
         purple.setSize(30, 30);
-        purple.addActionListener(controller);
+        //purple.addActionListener(controller);
         gamePad.add(purple);
 
         red = new DotButton(5, iconSize);
         red.setSize(30, 30);
-        red.addActionListener(controller);
+        //red.addActionListener(controller);
         gamePad.add(red);
 
 
@@ -128,15 +129,16 @@ public class GameView extends JFrame
         options.add(steps);
 
         reset = new JButton("Reset");
-        reset.addActionListener(controller);
+        //reset.addActionListener(controller);
         options.add(reset);
 
         quit = new JButton("Quit");
-        quit.addActionListener(controller);
+        //quit.addActionListener(controller);
         options.add(quit);
 
         //setup and closing settings
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(width, height*x + 60);
         setVisible(true);
     }
