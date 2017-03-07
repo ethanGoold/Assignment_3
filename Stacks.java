@@ -1,6 +1,6 @@
 public class Stacks<E> implements Stack
 {
-	private E[] stack;
+	private E[] stacks;
 	private int top;
 
 	public Stacks(int size)
@@ -53,7 +53,7 @@ public class Stacks<E> implements Stack
      */
     public E pop()
     {
-    	if !(this.isEmpty())
+    	if (!this.isEmpty())
     	{
     		E tmp = stacks[top];
     		stacks[top] = null;
@@ -74,7 +74,7 @@ public class Stacks<E> implements Stack
      */
     public void push( E element )
     {
-    	if !(isFull())
+    	if (!this.isFull())
     	{
     		stacks[top + 1] = element;
     		top++;

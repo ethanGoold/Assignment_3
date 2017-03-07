@@ -48,10 +48,30 @@ public class GameController implements ActionListener
      *            the ActionEvent
      */
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) 
+    {
+        if (e.getActionCommand().equals("Quit"))
+        {
+            System.exit(0);
+        } else if (e.getActionCommand().equals("Reset"))
+        {
 
-// ADD YOUR CODE HERE
+        } else if (e.getActionCommand().equals("grey"))
+        {
 
+        } else if (e.getActionCommand().equals("yellow"))
+        {
+
+        } else if (e.getActionCommand().equals("blue"))
+        {
+
+        } else if (e.getActionCommand().equals("green"))
+        {
+
+        } else if (e.getActionCommand().equals("purple"))
+        {
+
+        } else if (e.getActionCommand().equals("red"))
     }
 
     /**
