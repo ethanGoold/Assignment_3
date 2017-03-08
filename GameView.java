@@ -83,7 +83,7 @@ public class GameView extends JFrame
         for (int i = 0; i< dots.length; i++)
         {
             //initialize dot
-            dots[i] = new DotButton(i/x, i%x, model.get(i/x, i%x).getColor(), iconSize);
+            dots[i] = new DotButton(i/x, i%x, model.getColor(i/x, i%x), iconSize);
             //dots[i] = new DotButton(i/x, i%x, gen.nextInt(6), iconSize);
             dots[i].setSize((3-iconSize)*10, (3-iconSize)*10);
             board.add(dots[i]);
@@ -157,12 +157,18 @@ public class GameView extends JFrame
     public void update()
     {
         //board variables
+        int x = model.getSize();
+        for (int i = 0; i < dots.length; i++)
+        {
+        	dots[i].setColor(model.getColor(i/x, i%x));
+        }
+        //board variables updated
 
         //gamePad variables
         //  no variables to update
 
         //options variables
-        //steps.setText("Number of Steps: " + model.getSteps());
+        steps.setText("Number of Steps: " + model.getSteps());
         //options variables updated
 
     }

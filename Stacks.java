@@ -6,7 +6,7 @@ public class Stacks<E> implements Stack
 	public Stacks(int size)
 	{
 		@SuppressWarnings( "unchecked" )
-		stacks = (E[]) new Object[size];
+		this.stacks = (E[]) new Object[size];
 		for (int i = 0; i < stacks.length; i++)
 		{
 			stacks[i] = null;

@@ -14,10 +14,8 @@ public class GameModel {
     private int size;
     private int steps = 0; 
     private int currentSelectedColor; 
-    private Stacks<DotInfo> captured;
 
     public GameModel (int size){
-        captured = new Stacks<DotInfo>(size);
     	Random generator = new Random();
     	this.size = size;
     	model = new DotInfo[size*size];
@@ -88,10 +86,15 @@ public class GameModel {
     }
 
     public boolean isFinished(){
-    	boolean result = true;
-    	return captured.isFull();
-
-
+    	
+    	for (int i = 0; i < model.length; i++)
+    	{
+    		if (!model[i].isCaptured())
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
     public String toString(){
